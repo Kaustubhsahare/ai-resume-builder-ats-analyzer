@@ -12,7 +12,7 @@ const Layout = ({ children }) => {
     return (
         <div className="app-layout" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
             <nav className="glass" style={{ padding: '1rem 0', position: 'sticky', top: 0, zIndex: 50, borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-                <div className="container flex justify-between items-center">
+                <div className="container flex justify-between items-center" style={{ flexWrap: 'wrap', gap: '1rem' }}>
                     <Link to="/" className="flex items-center gap-2" style={{ textDecoration: 'none' }}>
                         <Target size={28} color="var(--color-primary-light)" />
                         <span className="text-gradient" style={{ fontSize: '1.5rem', fontWeight: 800, fontFamily: 'var(--font-heading)' }}>

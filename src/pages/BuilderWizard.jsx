@@ -149,18 +149,18 @@ const BuilderWizard = () => {
     };
 
     return (
-        <div className="container py-10" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', height: 'calc(100vh - 100px)' }}>
+        <div className="container py-10 md-grid-cols-2 md-h-100vh">
             {/* Scrollable Form Section */}
-            <div className="card" style={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
-                <div style={{ paddingBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', marginBottom: '1.5rem' }}>
+            <div className="card" style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden', minHeight: '500px' }}>
+                <div style={{ paddingBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', marginBottom: '1.5rem', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
                     <h2 className="text-gradient">Resume Builder</h2>
-                    <div className="flex items-center gap-2" style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem' }}>
+                    <div className="flex items-center gap-2" style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem', minWidth: 'max-content', paddingBottom: '0.5rem' }}>
                         {steps.map((step, index) => (
                             <React.Fragment key={index}>
-                                <span style={{ color: currentStep === index ? 'var(--color-primary-light)' : 'inherit', fontWeight: currentStep === index ? 600 : 400 }}>
+                                <span style={{ color: currentStep === index ? 'var(--color-primary-light)' : 'inherit', fontWeight: currentStep === index ? 600 : 400, whiteSpace: 'nowrap' }}>
                                     {index + 1}. {step}
                                 </span>
-                                {index < steps.length - 1 && <ChevronRight size={14} />}
+                                {index < steps.length - 1 && <ChevronRight size={14} style={{ flexShrink: 0 }} />}
                             </React.Fragment>
                         ))}
                     </div>
@@ -178,13 +178,13 @@ const BuilderWizard = () => {
                     </div>
                 </div>
 
-                <div className="flex justify-between" style={{ paddingTop: '1.5rem', borderTop: '1px solid rgba(255,255,255,0.05)', marginTop: '1rem' }}>
-                    <button className="btn btn-secondary" onClick={handlePrev} disabled={currentStep === 0}>
+                <div className="flex justify-between md-flex-row" style={{ flexWrap: 'wrap-reverse', gap: '1rem', paddingTop: '1.5rem', borderTop: '1px solid rgba(255,255,255,0.05)', marginTop: '1rem' }}>
+                    <button className="btn btn-secondary" onClick={handlePrev} disabled={currentStep === 0} style={{ flexGrow: 1, justifyContent: 'center' }}>
                         <ChevronLeft size={18} /> Previous
                     </button>
 
-                    <div className="flex gap-4">
-                        <button className="btn btn-secondary"><Save size={18} /> Save</button>
+                    <div className="flex gap-4" style={{ flexWrap: 'wrap', flexGrow: 2 }}>
+                        <button className="btn btn-secondary" style={{ flexGrow: 1, justifyContent: 'center' }}><Save size={18} /> Save</button>
                         {currentStep < steps.length - 1 ? (
                             <button className="btn btn-primary" onClick={handleNext}>
                                 Next <ChevronRight size={18} />
@@ -200,8 +200,8 @@ const BuilderWizard = () => {
 
             {/* Live Preview Pane */}
             <div className="card" style={{ background: '#525659', color: '#000', padding: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-                <div style={{ padding: '1rem', background: '#333', color: 'white', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <div className="flex gap-2 items-center">
+                <div style={{ padding: '1rem', background: '#333', color: 'white', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
+                    <div className="flex gap-2 items-center" style={{ flexWrap: 'wrap' }}>
                         <span style={{ fontWeight: 600, marginRight: '1rem' }}>Template:</span>
                         <select
                             value={resumeData.selectedTemplate}
@@ -217,12 +217,12 @@ const BuilderWizard = () => {
                             <option value="modern-two-column">Modern Two Column</option>
                         </select>
                     </div>
-                    <button className="btn btn-primary" style={{ padding: '0.5rem 1rem', fontSize: '0.875rem' }} onClick={handleDownload}>
+                    <button className="btn btn-primary" style={{ padding: '0.5rem 1rem', fontSize: '0.875rem', flexGrow: 1, justifyContent: 'center', whiteSpace: 'nowrap' }} onClick={handleDownload}>
                         <Download size={16} /> Download PDF
                     </button>
                 </div>
                 <div style={{ flex: 1, overflowY: 'auto', padding: '2rem', display: 'flex', justifyContent: 'center' }}>
-                    <div id="resume-preview-container" ref={previewRef} style={{ width: '100%', maxWidth: '850px', background: 'white', boxShadow: '0 4px 12px rgba(0,0,0,0.5)', minHeight: '1100px' }}>
+                    <div id="resume-preview-container" ref={previewRef} style={{ width: '100%', maxWidth: '850px', background: 'white', boxShadow: '0 4px 12px rgba(0,0,0,0.5)', minHeight: '900px' }}>
                         {renderTemplate()}
                     </div>
                 </div>

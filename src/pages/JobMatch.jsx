@@ -110,14 +110,14 @@ const JobMatch = () => {
                 </button>
             </div>
 
-            <div className="grid gap-8" style={{ gridTemplateColumns: result ? 'minmax(0, 1fr) minmax(0, 1fr)' : '1fr' }}>
+            <div className="grid gap-8" style={{ gridTemplateColumns: result ? 'minmax(0, 1fr) minmax(0, 1fr)' : '1fr' }} className={`grid gap-8 ${result ? 'md-grid-cols-2' : ''}`}>
 
                 {/* Input Form Column */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                     {/* Upload Area (Visible only on 'upload' tab) */}
                     {activeTab === 'upload' && (
                         <div className="card animate-fade-in" style={{ border: '1px solid rgba(255,255,255,0.1)' }}>
-                            <div className="flex justify-between items-center mb-4">
+                            <div className="flex justify-between items-center mb-4 md-flex-row md-justify-between">
                                 <h3 style={{ fontSize: '1.25rem', margin: 0 }}>Paste your Resume text</h3>
                                 <div>
                                     <input
@@ -147,7 +147,7 @@ const JobMatch = () => {
                         <h3 style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                             <Target size={20} color="var(--color-primary-light)" /> Target Role Details
                         </h3>
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid md-grid-cols-2 gap-4">
                             <div className="input-group">
                                 <label className="input-label">Company Name (Optional)</label>
                                 <input type="text" className="input-field" value={company} onChange={(e) => setCompany(e.target.value)} placeholder="e.g. Google" />
@@ -184,7 +184,7 @@ const JobMatch = () => {
 
                         {/* Match Score Card */}
                         <div className="card" style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
-                            <div style={{ position: 'relative', width: '120px', height: '120px', borderRadius: '50%', background: 'var(--color-surface-light)', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                            <div style={{ position: 'relative', width: '120px', height: '120px', borderRadius: '50%', background: 'var(--color-surface-light)', display: 'flex', justifyContent: 'center', alignItems: 'center', flexShrink: 0 }}>
                                 <svg width="120" height="120" style={{ position: 'absolute', transform: 'rotate(-90deg)' }}>
                                     <circle cx="60" cy="60" r="54" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="8" />
                                     <circle cx="60" cy="60" r="54" fill="none" stroke={getScoreColor(result.matchScore)} strokeWidth="8" strokeDasharray="339.29" strokeDashoffset={339.29 - (339.29 * result.matchScore) / 100} style={{ transition: 'stroke-dashoffset 1s ease-in-out' }} />
@@ -200,7 +200,7 @@ const JobMatch = () => {
                         </div>
 
                         {/* Skills Match */}
-                        <div className="card grid grid-cols-3 gap-6">
+                        <div className="card grid grid-cols-1 md-grid-cols-3 gap-6">
                             <div className="skills-wrapper">
                                 <div className="skills-card">
                                     <h4 style={{ color: 'var(--color-primary-light)', display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
